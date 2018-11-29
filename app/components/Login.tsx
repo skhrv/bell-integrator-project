@@ -51,6 +51,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
               onChange={this.handleInputEmail}
               value={this.state.email}
               disabled={disabled}
+              required={true}
             />
           </div>
           <div className="form-group">
@@ -64,6 +65,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
               onChange={this.handleInputPassword}
               value={this.state.password}
               disabled={disabled}
+              required={true}
             />
           </div>
           <button
