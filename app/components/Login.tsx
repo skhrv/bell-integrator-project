@@ -37,7 +37,8 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
   public render() {
     const disabled = this.props.loading;
     return (
-      <div className="col-md-3 mx-auto mt-5">
+      <div className="col-md-3 mx-auto mt-4">
+      <p className="h3 text-center mb-3">Please login</p>
         <form onSubmit={this.handleSubmitLogin}>
           <div className="form-group">
             <label htmlFor="InputEmail1">Email address</label>
@@ -72,7 +73,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
             type="submit"
             className="btn btn-primary"
             disabled={disabled}
-          >Sign in
+          >Log in
           </button>
         </form>
       </div >

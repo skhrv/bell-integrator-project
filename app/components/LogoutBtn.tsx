@@ -15,7 +15,7 @@ const logoutBtn = (props: ILogoutProps) => {
       onClick={onClick}
       type="button onClick={}"
       className="btn btn-secondary"
-    >Logout
+    >Log out
     </button>
   );
 };
