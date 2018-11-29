@@ -1,0 +1,7 @@
+export const LOGOUT = 'USER_LOGOUT';
+
+export enum Login {
+  REQUEST = 'LOGIN_REQUEST',
+  SUCCESS = 'LOGIN_SUCCESS',
+  FAILURE = 'LOGIN_FAILURE',
+}
