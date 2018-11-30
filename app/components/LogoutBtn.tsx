@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 interface ILogoutProps {
-  logout: () => void;
+  onLogout: () => void;
 }
 
 const logoutBtn = (props: ILogoutProps) => {
-  const { logout } = props;
+  const { onLogout } = props;
   const onClick = () => {
-    logout();
+    onLogout();
   };
 
   return (

@@ -5,3 +5,9 @@ export enum Login {
   SUCCESS = 'LOGIN_SUCCESS',
   FAILURE = 'LOGIN_FAILURE',
 }
+
+export enum Logout {
+  REQUEST = 'LOGOUT_REQUEST',
+  SUCCESS = 'LOGOUT_SUCCESS',
+  FAILURE = 'LOGOUT_FAILURE',
+}
