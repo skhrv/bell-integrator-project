@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 import { RootPage } from '../components/RootPage';
 import { IStoreState } from '../reducers';
 
@@ -9,7 +10,7 @@ const rootPageContainer = connect(
     };
     return props;
   },
-  null,
+  actionCreators,
 )(RootPage);
 
 export { rootPageContainer as RootPageContainer };

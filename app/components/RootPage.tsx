@@ -3,7 +3,7 @@ import { LoginContainer } from '../containers/LoginContainer';
 import CompaniesList from './CompaniesList';
 
 interface IRootPageProps {
-  loginStatus?: boolean; // пришлось сделать опциональным, по другому не работает
+  loginStatus: boolean;
 }
 
 const rootPage = (props: IRootPageProps) => {
