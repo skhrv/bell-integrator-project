@@ -8,6 +8,7 @@ const loginContainer = connect(
     const props = {
       loginStatus: state.loginStatus,
       loading: state.loading,
+      error: state.error,
     };
     return props;
   },
