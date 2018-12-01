@@ -14,9 +14,10 @@ const login = createAsyncAction(
   Login.FAILURE,
 )<void, IUserPayload, Error>();
 
+const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+
 export const onLogin = (user: IUserPayload) => async (dispatch: Dispatch) => {
   dispatch(login.request());
-  const corsProxy = 'https://cors-anywhere.herokuapp.com/';
   const urlLogin = 'http://www.mocky.io/v2/5aafaf6f2d000057006eff31';
 
   const urlWithProxy = `${corsProxy}${urlLogin}`;
@@ -37,7 +38,6 @@ const logout = createAsyncAction(
 
 export const onLogout = () => async (dispatch: Dispatch) => {
   dispatch(logout.request());
-  const corsProxy = 'https://cors-anywhere.herokuapp.com/';
   const urlLogout = 'http://www.mocky.io/v2/5aafaf6f2d000057006eff31';
 
   const urlWithProxy = `${corsProxy}${urlLogout}`;
