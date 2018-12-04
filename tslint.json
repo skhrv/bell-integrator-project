@@ -21,6 +21,7 @@
     },
     "rules": {
         "member-ordering": false,
+        "member-access": false,
         "class-name": true,
         "no-console": false,
         "eofline": true,
