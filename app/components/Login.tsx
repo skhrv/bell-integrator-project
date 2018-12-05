@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { IUserPayload } from '../actions/index';
+import { IUser } from '../actions/index';
 import { Alert } from './Alert';
 
 interface ILoginProps {
-  onLogin: (user: IUserPayload) => void;
+  onLogin: (user: IUser) => void;
   loginStatus: boolean;
   loading: boolean;
   error: string | null;
