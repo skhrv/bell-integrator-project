@@ -20,23 +20,23 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
       password: '',
     };
   }
-  private handleSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  handleSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, password } = this.state;
     this.props.onLogin({ email, password });
   }
 
-  private handleInputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleInputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     this.setState({ email: value });
   }
 
-  private handleInputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleInputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     this.setState({ password: value });
   }
 
-  public render() {
+  render() {
     const disabled = this.props.loading;
     const { error } = this.props;
     return (

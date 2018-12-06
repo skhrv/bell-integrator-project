@@ -30,18 +30,18 @@ export default class CompaniesList extends React.Component<IPropsCompaniesList, 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
-  public async componentWillMount() {
+  async componentWillMount() {
     await this.props.onCompaniesFetch();
   }
 
-  public openModal() {
+  openModal() {
     this.setState({ modalIsOpen: true });
   }
 
-  public closeModal() {
+  closeModal() {
     this.setState({ modalIsOpen: false });
   }
-  public renderItems() {
+  renderItems() {
     const companies = Object.values(this.props.companies);
     const renderedItems = companies.map(({ id, inn, name, address }, index) => (
       <tr key={id}>
@@ -76,7 +76,7 @@ export default class CompaniesList extends React.Component<IPropsCompaniesList, 
       </Modal >
     );
   }
-  public render() {
+  render() {
     const { error, loading } = this.props;
     return (
       <React.Fragment>

@@ -11,7 +11,7 @@ interface ICustomProps {
 }
 
 class AddCompanyForm extends React.Component<ICustomProps & InjectedFormProps<{}, ICustomProps>> {
-  public addCompany = async (company: ICompany) => {
+  addCompany = async (company: ICompany) => {
     const { closeModal, onAddCompany, reset } = this.props;
     await onAddCompany(company);
     const { networkError } = this.props;
@@ -21,7 +21,7 @@ class AddCompanyForm extends React.Component<ICustomProps & InjectedFormProps<{}
     }
   }
 
-  public render() {
+  render() {
     const { handleSubmit, closeModal, networkError, loading } = this.props;
     return (
       <form onSubmit={handleSubmit(this.addCompany)}>
