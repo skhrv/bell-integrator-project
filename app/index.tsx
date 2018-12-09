@@ -3,10 +3,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
-import reduxThunk from 'redux-thunk';
-import App from './components/App';
-
 import { composeWithDevTools } from 'redux-devtools-extension';
+import reduxThunk from 'redux-thunk';
+import { AppContainer } from './containers/AppContainer';
 import reducers from './reducers';
 
 const store = createStore(
@@ -17,7 +16,7 @@ const store = createStore(
 );
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById('app'),
 );
