@@ -1,13 +1,23 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { ICompany } from '../actions';
-import { AddCompany, CompaniesFetch, Login, Logout, RemoveCompany } from '../actions/consts';
+import {
+  AddCompany,
+  AddSubDivision,
+  CompaniesFetch,
+  Login,
+  Logout,
+  RemoveCompany,
+  RemoveSubDivision,
+  SubDivisionsFetch,
+} from '../actions/consts';
+import { ICompany, ISubDivision } from '../actions/models';
 
 export interface IStoreState {
   loginStatus: boolean;
   loading: boolean;
   error: string | null;
   companies: ICompany[];
+  subDivisions: ISubDivision[];
 }
 
 export interface IAction {
@@ -97,4 +107,23 @@ const companies = (state: ICompany[] = [], action: IAction) => {
   return state;
 };
 
-export default combineReducers({ loginStatus, loading, error, companies, form: formReducer });
+const subDivisions = (state: ISubDivision[] = [], action: IAction) => {
+  switch (action.type) {
+    case SubDivisionsFetch.SUCCESS:
+      return action.payload;
+    case AddSubDivision.SUCCESS:
+      return [...state, action.payload];
+    case RemoveSubDivision.SUCCESS:
+      return state.filter(({ id }) => id !== action.payload.id);
+  }
+  return state;
+};
+
+export default combineReducers({
+  loginStatus,
+  loading,
+  error,
+  companies,
+  subDivisions,
+  form: formReducer,
+});
