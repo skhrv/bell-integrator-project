@@ -4,20 +4,19 @@ interface ILogoutProps {
   onLogout: () => void;
 }
 
-const logoutBtn = (props: ILogoutProps) => {
+const logoutLink = (props: ILogoutProps) => {
   const { onLogout } = props;
   const onClick = () => {
     onLogout();
   };
 
   return (
-    <button
+    <a
+      href="/login"
       onClick={onClick}
-      type="button onClick={}"
-      className="btn btn-secondary"
-    >Log out
-    </button>
+    >Выйти
+    </a>
   );
 };
 
-export { logoutBtn as LogoutBtn };
+export { logoutLink as LogoutLink };
