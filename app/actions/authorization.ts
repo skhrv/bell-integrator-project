@@ -1,20 +1,8 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
-import { AddCompany, CompaniesFetch, Login, Logout, RemoveCompany } from './consts';
-import routes from './routes';
-
-export interface IUser {
-  email: string;
-  password: string;
-}
-
-export interface ICompany {
-  id?: string;
-  name: string;
-  inn: number;
-  address: string;
-}
+import { Login, Logout } from './consts';
+import { IUser } from './models';
 
 const login = createAsyncAction(
   Login.REQUEST,
@@ -50,6 +38,7 @@ export const onLogout = () => async (dispatch: Dispatch) => {
   }
 };
 
+/*
 const companiesFetch = createAsyncAction(
   CompaniesFetch.REQUEST,
   CompaniesFetch.SUCCESS,
@@ -97,3 +86,4 @@ export const onRemoveCompany = (id: string) => async (dispatch: Dispatch) => {
     dispatch(removeCompany.failure(e.message));
   }
 };
+*/

@@ -17,4 +17,7 @@ const host = 'https://bell-json-server.herokuapp.com';
 export default {
   companiesUrl: () => [host, 'companies'].join('/'), // get companies list
   companyUrl: (id: string) => [host, 'companies', id].join('/'),
+  subDivisionsUrl: () => [host, 'subDivision'].join('/'), // get subDivisions list
+  subDivisionUrl: (id: string) => [host, 'subDivision', id].join('/'),
+
 };
