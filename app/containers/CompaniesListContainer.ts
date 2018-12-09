@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions';
+import * as actionCreators from '../actions/companyActions';
 import CompaniesList from '../components/CompaniesList';
 import { IStoreState } from '../reducers';
 

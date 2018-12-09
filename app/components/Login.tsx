@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IUser } from '../actions/index';
+import { IUser } from '../actions/models';
 import { Alert } from './Alert';
 
 interface ILoginProps {

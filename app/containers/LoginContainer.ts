@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions';
+import * as actionCreators from '../actions/authorization';
 import Login from '../components/Login';
 import { IStoreState } from '../reducers';
 
