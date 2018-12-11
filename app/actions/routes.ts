@@ -19,5 +19,6 @@ export default {
   companyUrl: (id: string) => [host, 'companies', id].join('/'),
   subDivisionsUrl: () => [host, 'subDivision'].join('/'), // get subDivisions list
   subDivisionUrl: (id: string) => [host, 'subDivision', id].join('/'),
-
+  employeesUrl: () => [host, 'employees'].join('/'), // get employees list
+  employeeUrl: (id: string) => [host, 'employees', id].join('/'),
 };
