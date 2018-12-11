@@ -6,7 +6,8 @@ interface ILogoutProps {
 
 const logoutLink = (props: ILogoutProps) => {
   const { onLogout } = props;
-  const onClick = () => {
+  const onClick = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     onLogout();
   };
 
