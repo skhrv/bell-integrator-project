@@ -1,14 +1,25 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import { CompaniesListContainer } from '../containers/CompaniesListContainer';
+import { EmployeesListContainer } from '../containers/EmployeesListConnect';
 import { LoginContainer } from '../containers/LoginContainer';
 import { LogoutLinkContainer } from '../containers/LogoutLinkContainer';
 import { PrivateRouteContainer } from '../containers/PrivateRouteContainer';
-import { SubDivisionListContainer } from '../containers/SubDivisionListContainer';
+import { SubDivisionsListContainer } from '../containers/SubDivisionsListContainer';
 
 interface IProps {
   loginStatus: boolean;
 }
+
+export const modalStyles = {
+  content: {
+    top: '50%',
+    left: '30%',
+    right: '30%',
+    bottom: 'auto',
+    transform: 'translateY(-50%)',
+  },
+};
 
 const app = (props: IProps) => {
   const { loginStatus } = props;
@@ -32,8 +43,12 @@ const app = (props: IProps) => {
           />
           <Route path="/login" render={renderLoginPage} />
           <PrivateRouteContainer
-            path="/sub_divisions/:companyId"
-            component={SubDivisionListContainer}
+            path="/companies/:companyId/:subDivisionId"
+            component={EmployeesListContainer}
+          />
+          <PrivateRouteContainer
+            path="/companies/:companyId"
+            component={SubDivisionsListContainer}
           />
           <PrivateRouteContainer path="/companies/" component={CompaniesListContainer} />
         </Switch>
