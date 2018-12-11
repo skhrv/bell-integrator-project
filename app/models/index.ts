@@ -34,6 +34,11 @@ export interface IModalState {
   currentItemEdit: ICompany | ISubDivision | IEmployee;
 }
 
+export interface IDialogConfirmDelete {
+  open: boolean;
+  deleteId: string;
+}
+
 export interface IPropsList {
   error: string;
   loading: boolean;
@@ -42,10 +47,12 @@ export interface IPropsList {
   openEditModal: (payload: Item) => void;
   openAddModal: () => void;
   modal: IModalState;
+  DialogConfirmDelete: IDialogConfirmDelete;
 }
 
 export interface IStoreState {
   companies: ICompany[];
+  dialogConfirmDelete: IDialogConfirmDelete;
   employees: IEmployee[];
   error: string | null;
   loading: boolean;

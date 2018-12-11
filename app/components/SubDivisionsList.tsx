@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
 import { Link, RouteComponentProps } from 'react-router-dom';
+import { DialogConfirmDeleteContainer } from '../containers/DialogConfirmDeleteContainer';
 import { HandleItemFormContainer } from '../containers/HandleItemFormContainer';
 import { IPropsList, ISubDivision } from '../models';
 import { Alert } from './Alert';
@@ -16,8 +17,7 @@ interface ICustomProps extends IPropsList, RouteComponentProps<ISubDivisionRoute
   onAddSubDivision: (subDivision: ISubDivision) => void;
   onEditSubDivision: (subDivision: ISubDivision) => void;
   onRemoveSubDivision: (id: string) => void;
-  error: string;
-  loading: boolean;
+  openDialogConfirmDelete: (id: string) => void;
 }
 
 const fields = [
@@ -38,7 +38,7 @@ export default class SubDivisionsList extends React.Component<ICustomProps> {
     this.props.openAddModal();
   }
   removeItem = (id: string) => () => {
-    this.props.onRemoveSubDivision(id);
+    this.props.openDialogConfirmDelete(id);
   }
   closeModal = () => {
     this.props.closeModal();
@@ -107,11 +107,12 @@ export default class SubDivisionsList extends React.Component<ICustomProps> {
     );
   }
   render() {
-    const { error, loading } = this.props;
+    const { error, loading, onRemoveSubDivision } = this.props;
     return (
       <React.Fragment>
         {error && (<Alert message={error} />)}
         {this.renderModal()}
+        <DialogConfirmDeleteContainer onConfirm={onRemoveSubDivision} />
         <div className="d-flex mb-1">
           <h1 className="h3 mr-3">Список подразделений</h1>
           <button

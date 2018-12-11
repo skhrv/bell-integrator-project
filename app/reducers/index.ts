@@ -6,6 +6,7 @@ import {
   AddEmployee,
   AddSubDivision,
   CompaniesFetch,
+  DialogConfirmDelete,
   EditCompany,
   EditEmployee,
   EditSubDivision,
@@ -18,7 +19,14 @@ import {
   RemoveSubDivision,
   SubDivisionsFetch,
 } from '../actions/consts';
-import { IAction, ICompany, IEmployee, IModalState, ISubDivision } from '../models';
+import {
+  IAction,
+  ICompany,
+  IDialogConfirmDelete,
+  IEmployee,
+  IModalState,
+  ISubDivision,
+} from '../models';
 
 const loginStatus = (state: boolean = false, action: IAction) => {
   switch (action.type) {
@@ -214,8 +222,24 @@ const modal = (state: IModalState = modalInitState, action: IAction) => {
   return state;
 };
 
+const dialogInitState: IDialogConfirmDelete = {
+  open: false,
+  deleteId: null,
+};
+
+const dialogConfirmDelete = (state: IDialogConfirmDelete = dialogInitState, action: IAction) => {
+  switch (action.type) {
+    case DialogConfirmDelete.OPEN:
+      return { ...state, open: true, deleteId: action.payload };
+    case DialogConfirmDelete.CLOSE:
+      return { ...state, open: false, deleteId: null };
+  }
+  return state;
+};
+
 export default combineReducers({
   companies,
+  dialogConfirmDelete,
   error,
   employees,
   loginStatus,

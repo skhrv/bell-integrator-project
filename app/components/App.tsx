@@ -13,11 +13,11 @@ interface IProps {
 
 export const modalStyles = {
   content: {
-    top: '50%',
+    top: '30%',
     left: '30%',
     right: '30%',
     bottom: 'auto',
-    transform: 'translateY(-50%)',
+    transform: 'translateY(-30%)',
   },
 };
 

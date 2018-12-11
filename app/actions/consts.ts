@@ -89,3 +89,8 @@ export enum Modal {
   EDIT = 'MODAL_OPEN_EDIT',
   ADD = 'MODAL_OPEN_ADD',
 }
+
+export enum DialogConfirmDelete {
+  CLOSE = 'DIALOG_CONFIRM_DELETE_CLOSE',
+  OPEN = 'DIALOG_CONFIRM_DELETE_OPEN',
+}

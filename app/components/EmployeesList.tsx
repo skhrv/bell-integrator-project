@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
 import { RouteComponentProps } from 'react-router-dom';
+import { DialogConfirmDeleteContainer } from '../containers/DialogConfirmDeleteContainer';
 import { HandleItemFormContainer } from '../containers/HandleItemFormContainer';
 import { IEmployee, IPropsList } from '../models';
 import { Alert } from './Alert';
@@ -17,6 +18,7 @@ interface ICustomProps extends IPropsList, RouteComponentProps<IEmployeeRouter> 
   onAddEmployee: (employee: IEmployee) => void;
   onEditEmployee: (employee: IEmployee) => void;
   onRemoveEmployee: (id: string) => void;
+  openDialogConfirmDelete: (id: string) => void;
 }
 
 const fields = [
@@ -40,7 +42,7 @@ export default class EmployeesList extends React.Component<ICustomProps> {
     this.props.openAddModal();
   }
   removeItem = (id: string) => () => {
-    this.props.onRemoveEmployee(id);
+    this.props.openDialogConfirmDelete(id);
   }
   closeModal = () => {
     this.props.closeModal();
@@ -111,11 +113,12 @@ export default class EmployeesList extends React.Component<ICustomProps> {
     );
   }
   render() {
-    const { error, loading } = this.props;
+    const { error, loading, onRemoveEmployee } = this.props;
     return (
       <React.Fragment>
         {error && (<Alert message={error} />)}
         {this.renderModal()}
+        <DialogConfirmDeleteContainer onConfirm={onRemoveEmployee} />
         <div className="d-flex mb-1">
           <h1 className="h3 mr-3">Список сотрудников</h1>
           <button

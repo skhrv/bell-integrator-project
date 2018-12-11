@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import * as DialogConfirmDeleteActionCreators from '../actions/dialogConfirmDelete';
 import * as ModalActionCreators from '../actions/modal';
 import * as subDivisionssActionCreators from '../actions/subDivisions';
 import SubDivisionsList from '../components/SubDivisionsList';
@@ -15,7 +16,7 @@ const subDivisionsListContainer = connect(
     };
     return props;
   },
-  { ...subDivisionssActionCreators, ...ModalActionCreators },
+  { ...subDivisionssActionCreators, ...ModalActionCreators, ...DialogConfirmDeleteActionCreators },
 )(SubDivisionsList);
 
 export { subDivisionsListContainer as SubDivisionsListContainer };

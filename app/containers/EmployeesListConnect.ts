@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import * as DialogConfirmDeleteActionCreators from '../actions/dialogConfirmDelete';
 import * as employeesActionCreators from '../actions/employee';
 import * as ModalActionCreators from '../actions/modal';
 import EmployeesList from '../components/EmployeesList';
@@ -11,10 +12,11 @@ const employeesListContainer = connect(
       error: state.error,
       loading: state.loading,
       modal: state.modal,
+      dialogConfirmDelete: state.dialogConfirmDelete,
     };
     return props;
   },
-  { ...employeesActionCreators, ...ModalActionCreators },
+  { ...employeesActionCreators, ...ModalActionCreators, ...DialogConfirmDeleteActionCreators },
 )(EmployeesList);
 
 export { employeesListContainer as EmployeesListContainer };
