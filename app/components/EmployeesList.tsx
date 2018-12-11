@@ -77,8 +77,8 @@ export default class EmployeesList extends React.Component<ICustomProps> {
           </tr >
         );
       });
-
-    return renderedItems;
+    const emptyList = <tr><td align="center" colSpan={100}>Список пуст</td></tr>;
+    return renderedItems.length === 0 ? emptyList : renderedItems;
   }
   renderModal() {
     const { subDivisionId } = this.props.match.params;
