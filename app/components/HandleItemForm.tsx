@@ -17,7 +17,7 @@ interface ICustomProps {
 }
 
 class HandleItemForm extends React.Component<ICustomProps & InjectedFormProps<{}, ICustomProps>> {
-  componentWillMount() {
+  componentDidMount() {
     const { initialize, mode, item } = this.props;
     if (mode === 'edit') {
       initialize(item);

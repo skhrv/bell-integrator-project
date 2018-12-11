@@ -27,7 +27,7 @@ const fields = [
 Modal.setAppElement('#app');
 
 export default class SubDivisionsList extends React.Component<ICustomProps> {
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.onSubDivisionsFetch();
   }
 

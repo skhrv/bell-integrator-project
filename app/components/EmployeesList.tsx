@@ -31,7 +31,7 @@ const fields = [
 Modal.setAppElement('#app');
 
 export default class EmployeesList extends React.Component<ICustomProps> {
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.onEmployeesFetch();
   }
 
