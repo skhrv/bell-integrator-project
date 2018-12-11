@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 
-interface ICustomProps {
+interface ICustomProps extends RouteProps {
   loginStatus: boolean;
 }
 
-type Props = ICustomProps & RouteProps;
-
-const privateRoute = (props: Props) => {
+const privateRoute = (props: ICustomProps) => {
   // tslint:disable-next-line:variable-name
   const { component: Component, loginStatus, ...rest } = props;
   const render = (rProps: RouteProps) => {

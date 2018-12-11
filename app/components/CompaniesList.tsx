@@ -1,21 +1,18 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
 import { Link } from 'react-router-dom';
-import { ICompany } from '../actions/models';
-import { AddFormContainer } from '../containers/AddFormContainer';
+import { HandleItemFormContainer } from '../containers/HandleItemFormContainer';
+import { ICompany, IPropsList } from '../models';
 import { Alert } from './Alert';
+import { modalStyles } from './App';
 import { Loader } from './Loader';
 
-interface IPropsCompaniesList {
+interface ICustomProps extends IPropsList {
   companies: ICompany[];
   onCompaniesFetch: () => void;
   onAddCompany: (company: ICompany) => void;
-  error: string;
-  loading: boolean;
-}
-
-interface IState {
-  modalIsOpen: boolean;
+  onEditCompany: (company: ICompany) => void;
+  onRemoveCompany: (id: string) => void;
 }
 
 const fields = [
@@ -24,65 +21,77 @@ const fields = [
 
 Modal.setAppElement('#app');
 
-export default class CompaniesList extends React.Component<IPropsCompaniesList, IState> {
-  constructor(props: IPropsCompaniesList) {
-    super(props);
-    this.state = {
-      modalIsOpen: false,
-    };
-
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
+export default class CompaniesList extends React.Component<ICustomProps> {
   async componentWillMount() {
     await this.props.onCompaniesFetch();
   }
 
-  openModal() {
-    this.setState({ modalIsOpen: true });
+  editItem = (item: ICompany) => () => {
+    this.props.openEditModal(item);
   }
-
-  closeModal() {
-    this.setState({ modalIsOpen: false });
+  addItem = () => {
+    this.props.openAddModal();
+  }
+  removeItem = (id: string) => () => {
+    this.props.onRemoveCompany(id);
+  }
+  closeModal = () => {
+    this.props.closeModal();
   }
   renderItems() {
     const companies = Object.values(this.props.companies);
-    const renderedItems = companies.map(({ id, inn, name, address }, index) => (
-      <tr key={id} >
-        <th scope="row">{index + 1}</th>
-        <td><Link to={`sub_divisions/${id}`}>{name}</Link></td>
-        <td>{address}</td>
-        <td>{inn}</td>
-        <td>
-          <button type="button" className="btn btn-info btn-sm mr-2">Редактировать</button>
-          <button type="button" className="btn btn-danger btn-sm">Удалить</button>
-        </td>
-      </tr >
-    ));
+    const renderedItems = companies.map((company, index) => {
+      const { id, inn, name, address } = company;
+      return (
+        <tr key={id} >
+          <th scope="row">{index + 1}</th>
+          <td><Link to={`companies/${id}`}>{name}</Link></td>
+          <td>{address}</td>
+          <td>{inn}</td>
+          <td>
+            <button
+              type="button"
+              className="btn btn-info btn-sm mr-2 mb-1"
+              onClick={this.editItem(company)}
+            >Редактировать
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger btn-sm mb-1"
+              onClick={this.removeItem(id)}
+            >Удалить
+            </button>
+          </td>
+        </tr >
+      );
+    });
     return renderedItems;
   }
   renderModal() {
-    const customStyles = {
-      content: {
-        top: '50%',
-        left: '30%',
-        right: '30%',
-        bottom: 'auto',
-        transform: 'translateY(-50%)',
-      },
-    };
+    const { open, mode, currentItemEdit } = this.props.modal;
+    const { onEditCompany, onAddCompany } = this.props;
+    let currentHandleItem;
+    let title;
+    if (mode === 'edit') {
+      title = 'Редактировать организацию';
+      currentHandleItem = onEditCompany;
+    } else if (mode === 'add') {
+      title = 'Добавить организацию';
+      currentHandleItem = onAddCompany;
+    }
     return (
       <Modal
-        isOpen={this.state.modalIsOpen}
+        isOpen={open}
         onRequestClose={this.closeModal}
-        contentLabel="Добавить организацию"
-        style={customStyles}
+        style={modalStyles}
       >
-        <h5 className="modal-title">Добавить органиацию</h5>
-        <AddFormContainer
+        <h5 className="modal-title">{title}</h5>
+        <HandleItemFormContainer
           closeModal={this.closeModal}
-          addItem={this.props.onAddCompany}
+          handleItem={currentHandleItem}
           fields={fields}
+          mode={mode}
+          item={currentItemEdit}
         />
       </Modal >
     );
@@ -96,7 +105,7 @@ export default class CompaniesList extends React.Component<IPropsCompaniesList, 
         <div className="d-flex mb-1">
           <h1 className="h3 mr-3">Список органиаций</h1>
           <button
-            onClick={this.openModal}
+            onClick={this.addItem}
             type="button"
             className="btn btn-outline-primary btn-sm mr-3"
           >Добавить запись

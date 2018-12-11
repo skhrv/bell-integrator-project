@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/companyActions';
+import * as companiesActionCreators from '../actions/companies';
+import * as ModalActionCreators from '../actions/modal';
 import CompaniesList from '../components/CompaniesList';
-import { IStoreState } from '../reducers';
+import { IStoreState } from '../models';
 
 const companiesListContainer = connect(
   (state: IStoreState) => {
@@ -9,10 +10,11 @@ const companiesListContainer = connect(
       companies: state.companies,
       error: state.error,
       loading: state.loading,
+      modal: state.modal,
     };
     return props;
   },
-  actionCreators,
+  { ...companiesActionCreators, ...ModalActionCreators },
 )(CompaniesList);
 
 export { companiesListContainer as CompaniesListContainer };
