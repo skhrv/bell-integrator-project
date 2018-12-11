@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
-import { AddCompany, CompaniesFetch, RemoveCompany } from './consts';
-import { ICompany } from './models';
+import { ICompany } from '../models';
+import { AddCompany, CompaniesFetch, EditCompany, RemoveCompany } from './consts';
 import routes from './routes';
 
 const companiesFetch = createAsyncAction(
@@ -41,14 +41,30 @@ const removeCompany = createAsyncAction(
   RemoveCompany.REQUEST,
   RemoveCompany.SUCCESS,
   RemoveCompany.FAILURE,
-)<void, ICompany, Error>();
+)<void, string, Error>();
 
 export const onRemoveCompany = (id: string) => async (dispatch: Dispatch) => {
   dispatch(removeCompany.request());
   try {
-    const response = await axios.delete(routes.companyUrl(id));
-    dispatch(removeCompany.success(response.data));
+    await axios.delete(routes.companyUrl(id));
+    dispatch(removeCompany.success(id));
   } catch (e) {
     dispatch(removeCompany.failure(e.message));
+  }
+};
+
+const editCompany = createAsyncAction(
+  EditCompany.REQUEST,
+  EditCompany.SUCCESS,
+  EditCompany.FAILURE,
+)<void, ICompany, Error>();
+
+export const onEditCompany = (company: ICompany) => async (dispatch: Dispatch) => {
+  dispatch(editCompany.request());
+  try {
+    const response = await axios.put(routes.companyUrl(company.id), company);
+    dispatch(editCompany.success(response.data));
+  } catch (e) {
+    dispatch(editCompany.failure(e.message));
   }
 };
