@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
-import { AddSubDivision, RemoveSubDivision, SubDivisionsFetch } from './consts';
-import { ISubDivision } from './models';
+import { ISubDivision } from '../models';
+import { AddSubDivision, EditSubDivision, RemoveSubDivision, SubDivisionsFetch } from './consts';
 import routes from './routes';
 
 const subDivisionsFetch = createAsyncAction(
@@ -41,14 +41,30 @@ const removeSubDivision = createAsyncAction(
   RemoveSubDivision.REQUEST,
   RemoveSubDivision.SUCCESS,
   RemoveSubDivision.FAILURE,
-)<void, ISubDivision, Error>();
+)<void, string, Error>();
 
 export const onRemoveSubDivision = (id: string) => async (dispatch: Dispatch) => {
   dispatch(removeSubDivision.request());
   try {
-    const response = await axios.delete(routes.subDivisionUrl(id));
-    dispatch(removeSubDivision.success(response.data));
+    await axios.delete(routes.subDivisionUrl(id));
+    dispatch(removeSubDivision.success(id));
   } catch (e) {
     dispatch(removeSubDivision.failure(e.message));
+  }
+};
+
+const editSubDivision = createAsyncAction(
+  EditSubDivision.REQUEST,
+  EditSubDivision.SUCCESS,
+  EditSubDivision.FAILURE,
+)<void, ISubDivision, Error>();
+
+export const onEditSubDivision = (subDivision: ISubDivision) => async (dispatch: Dispatch) => {
+  dispatch(editSubDivision.request());
+  try {
+    const response = await axios.put(routes.subDivisionUrl(subDivision.id), subDivision);
+    dispatch(editSubDivision.success(response.data));
+  } catch (e) {
+    dispatch(editSubDivision.failure(e.message));
   }
 };
