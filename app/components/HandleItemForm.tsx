@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import { ICompany, IEmployee, ISubDivision } from '../actions/models';
+import { Item } from '../models';
 import { Alert } from './Alert';
-
-type AddedItem = ICompany | ISubDivision | IEmployee;
 
 type field = string[];
 
@@ -12,16 +10,24 @@ interface ICustomProps {
   networkError: string;
   loading: boolean;
   closeModal: () => void;
-  addItem: (item: AddedItem) => void;
+  handleItem: (item: Item) => void;
   fields: field[];
+  mode: string;
+  item: Item;
 }
 
-class AddItemForm extends React.Component<ICustomProps & InjectedFormProps<{}, ICustomProps>> {
-  addCompany = async (item: AddedItem) => {
-    const { closeModal, addItem, reset, parentId } = this.props;
-    console.log(addItem);
+class HandleItemForm extends React.Component<ICustomProps & InjectedFormProps<{}, ICustomProps>> {
+  componentWillMount() {
+    const { initialize, mode, item } = this.props;
+    if (mode === 'edit') {
+      initialize(item);
+    }
+  }
+
+  handleItem = async (item: Item) => {
+    const { closeModal, handleItem, reset, parentId } = this.props;
     const newItem = parentId ? { ...item, ...parentId } : item;
-    await addItem(newItem);
+    await handleItem(newItem);
     const { networkError } = this.props;
     if (!networkError) {
       reset();
@@ -52,7 +58,7 @@ class AddItemForm extends React.Component<ICustomProps & InjectedFormProps<{}, I
   render() {
     const { handleSubmit, closeModal, networkError, loading } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.addCompany)}>
+      <form onSubmit={handleSubmit(this.handleItem)}>
         {networkError && (<Alert message={networkError} />)}
         <div className="modal-body">
           {this.renderFields()}
@@ -64,11 +70,11 @@ class AddItemForm extends React.Component<ICustomProps & InjectedFormProps<{}, I
             disabled={loading}
           >Добавить
           </button>
-          <button className="btn btn-secondary" onClick={closeModal}>Закрыть</button>
+          <button type="button" className="btn btn-secondary" onClick={closeModal}>Закрыть</button>
         </div>
       </form>
     );
   }
 }
 
-export default reduxForm<{}, ICustomProps>({ form: 'addItem' })(AddItemForm);
+export default reduxForm<{}, ICustomProps>({ form: 'handleItem' })(HandleItemForm);
