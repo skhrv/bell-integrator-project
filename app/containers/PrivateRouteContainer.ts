@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { PrivateRoute } from '../components/PrivateRoute';
-import { IStoreState } from '../reducers';
+import { IStoreState } from '../models';
 
 const privateRouteContainer = connect(
   (state: IStoreState) => {
