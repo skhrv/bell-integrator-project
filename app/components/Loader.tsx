@@ -1,4 +1,3 @@
-import 'loaders.css';
 import * as React from 'react';
 
 const loader = () => (

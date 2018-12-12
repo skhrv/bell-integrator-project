@@ -6,7 +6,10 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   context: path.resolve(__dirname, './app'),
-  entry: './index.tsx',
+  entry: {
+    app: './index.tsx',
+    css: './app.css.ts',
+  },
   mode: process.env.NODE_ENV || 'development',
   module: {
     rules: [{
@@ -36,6 +39,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
