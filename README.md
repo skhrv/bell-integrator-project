@@ -1,4 +1,4 @@
-# boilerplate-react-ts
+# bell-integrator-project
 
 
 try it here: [detailed-cakes.surge.sh](http://detailed-cakes.surge.sh/)
