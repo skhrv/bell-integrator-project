@@ -1,11 +1,19 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
-import CompaniesListContainer from '../containers/CompaniesListContainer';
-import EmployeesListContainer from '../containers/EmployeesListContainer';
 import LoginContainer from '../containers/LoginContainer';
 import LogoutLinkContainer from '../containers/LogoutLinkContainer';
 import PrivateRouteContainer from '../containers/PrivateRouteContainer';
-import SubDivisionsListContainer from '../containers/SubDivisionsListContainer';
+import Loader from './Loader';
+
+const CompaniesListContainer = React.lazy(() =>
+  // tslint:disable-next-line:space-in-parens
+  import(/* webpackChunkName: "companies" */'../containers/CompaniesListContainer'));
+const EmployeesListContainer = React.lazy(() =>
+  // tslint:disable-next-line:space-in-parens
+  import(/* webpackChunkName: "employees" */ '../containers/EmployeesListContainer'));
+const SubDivisionsListContainer = React.lazy(() =>
+  // tslint:disable-next-line:space-in-parens
+  import(/* webpackChunkName: "subDivisions" */ '../containers/SubDivisionsListContainer'));
 
 interface IProps {
   loginStatus: boolean;
@@ -35,23 +43,25 @@ const app = (props: IProps) => {
           {loginStatus && (<LogoutLinkContainer />) || (<Link to="/login">Войти</Link>)}
         </nav>
 
-        <Switch>
-          <Redirect
-            exact={true}
-            from="/"
-            to="/login"
-          />
-          <Route path="/login" render={renderLoginPage} />
-          <PrivateRouteContainer
-            path="/companies/:companyId/:subDivisionId"
-            component={EmployeesListContainer}
-          />
-          <PrivateRouteContainer
-            path="/companies/:companyId"
-            component={SubDivisionsListContainer}
-          />
-          <PrivateRouteContainer path="/companies/" component={CompaniesListContainer} />
-        </Switch>
+        <React.Suspense fallback={<Loader />}>
+          <Switch>
+            <Redirect
+              exact={true}
+              from="/"
+              to="/login"
+            />
+            <Route path="/login" render={renderLoginPage} />
+            <PrivateRouteContainer
+              path="/companies/:companyId/:subDivisionId"
+              component={EmployeesListContainer}
+            />
+            <PrivateRouteContainer
+              path="/companies/:companyId"
+              component={SubDivisionsListContainer}
+            />
+            <PrivateRouteContainer path="/companies/" component={CompaniesListContainer} />
+          </Switch>
+        </React.Suspense>
 
       </div>
     </Router>
