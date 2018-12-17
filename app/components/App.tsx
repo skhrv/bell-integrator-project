@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
-import { CompaniesListContainer } from '../containers/CompaniesListContainer';
-import { EmployeesListContainer } from '../containers/EmployeesListConnect';
-import { LoginContainer } from '../containers/LoginContainer';
-import { LogoutLinkContainer } from '../containers/LogoutLinkContainer';
-import { PrivateRouteContainer } from '../containers/PrivateRouteContainer';
-import { SubDivisionsListContainer } from '../containers/SubDivisionsListContainer';
+import CompaniesListContainer from '../containers/CompaniesListContainer';
+import EmployeesListContainer from '../containers/EmployeesListContainer';
+import LoginContainer from '../containers/LoginContainer';
+import LogoutLinkContainer from '../containers/LogoutLinkContainer';
+import PrivateRouteContainer from '../containers/PrivateRouteContainer';
+import SubDivisionsListContainer from '../containers/SubDivisionsListContainer';
 
 interface IProps {
   loginStatus: boolean;

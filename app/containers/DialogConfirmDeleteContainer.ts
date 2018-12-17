@@ -3,7 +3,7 @@ import * as actionCreators from '../actions/dialogConfirmDelete';
 import { DialogConfirmDelete } from '../components/DialogConfirmDelete';
 import { IStoreState } from '../models';
 
-const dialogConfirmDeleteContainer = connect(
+const DialogConfirmDeleteContainer = connect(
   (state: IStoreState) => {
     const props = {
       open: state.dialogConfirmDelete.open,
@@ -14,4 +14,4 @@ const dialogConfirmDeleteContainer = connect(
   actionCreators,
 )(DialogConfirmDelete);
 
-export { dialogConfirmDeleteContainer as DialogConfirmDeleteContainer };
+export default DialogConfirmDeleteContainer;

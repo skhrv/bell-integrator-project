@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { App } from '../components/App';
 import { IStoreState } from '../models';
 
-const appContainer = connect(
+const AppContainer = connect(
   (state: IStoreState) => {
     const props = {
       loginStatus: state.loginStatus,
@@ -11,4 +11,4 @@ const appContainer = connect(
   },
 )(App);
 
-export { appContainer as AppContainer };
+export default AppContainer;

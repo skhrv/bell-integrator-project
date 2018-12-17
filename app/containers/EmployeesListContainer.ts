@@ -5,7 +5,7 @@ import * as ModalActionCreators from '../actions/modal';
 import EmployeesList from '../components/EmployeesList';
 import { IStoreState } from '../models';
 
-const employeesListContainer = connect(
+const EmployeesListContainer = connect(
   (state: IStoreState) => {
     const props = {
       employees: state.employees,
@@ -19,4 +19,4 @@ const employeesListContainer = connect(
   { ...employeesActionCreators, ...ModalActionCreators, ...DialogConfirmDeleteActionCreators },
 )(EmployeesList);
 
-export { employeesListContainer as EmployeesListContainer };
+export default EmployeesListContainer;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { Item } from '../models';
-import { Alert } from './Alert';
+import Alert from './Alert';
 
 type field = string[];
 

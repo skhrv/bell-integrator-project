@@ -3,7 +3,7 @@ import * as React from 'react';
 interface IAlert {
   message: string;
 }
-const alert = (props: IAlert) => {
+const Alert = (props: IAlert) => {
   const { message } = props;
   return (
     <div className="alert alert-danger" role="alert">
@@ -11,4 +11,4 @@ const alert = (props: IAlert) => {
     </div>
   );
 };
-export { alert as Alert };
+export default Alert;

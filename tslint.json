@@ -20,6 +20,7 @@
         ]
     },
     "rules": {
+        "variable-name":false,
         "member-ordering": false,
         "member-access": false,
         "class-name": true,

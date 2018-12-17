@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reduxThunk from 'redux-thunk';
-import { AppContainer } from './containers/AppContainer';
+import AppContainer from './containers/AppContainer';
 import reducers from './reducers';
 
 const store = createStore(

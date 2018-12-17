@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const loader = () => (
+const Loader = () => (
   <div className="loader-inner ball-pulse d-flex justify-content-center">
     <div className="bg-primary" />
     <div className="bg-primary" />
@@ -8,4 +8,4 @@ const loader = () => (
   </div>
 );
 
-export { loader as Loader };
+export default Loader;

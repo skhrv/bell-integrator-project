@@ -5,7 +5,7 @@ import * as ModalActionCreators from '../actions/modal';
 import CompaniesList from '../components/CompaniesList';
 import { IStoreState } from '../models';
 
-const companiesListContainer = connect(
+const CompaniesListContainer = connect(
   (state: IStoreState) => {
     const props = {
       companies: state.companies,
@@ -19,4 +19,4 @@ const companiesListContainer = connect(
   { ...companiesActionCreators, ...ModalActionCreators, ...DialogConfirmDeleteActionCreators },
 )(CompaniesList);
 
-export { companiesListContainer as CompaniesListContainer };
+export default CompaniesListContainer;

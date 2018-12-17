@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
 import { RouteComponentProps } from 'react-router-dom';
-import { DialogConfirmDeleteContainer } from '../containers/DialogConfirmDeleteContainer';
-import { HandleItemFormContainer } from '../containers/HandleItemFormContainer';
+import DialogConfirmDeleteContainer from '../containers/DialogConfirmDeleteContainer';
+import HandleItemFormContainer from '../containers/HandleItemFormContainer';
 import { IEmployee, IPropsList } from '../models';
-import { Alert } from './Alert';
+import Alert from './Alert';
 import { modalStyles } from './App';
-import { Loader } from './Loader';
+import Loader from './Loader';
 
 interface IEmployeeRouter {
   subDivisionId: string;

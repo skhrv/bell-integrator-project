@@ -3,7 +3,7 @@ import * as actionCreators from '../actions/authorization';
 import Login from '../components/Login';
 import { IStoreState } from '../models';
 
-const loginContainer = connect(
+const LoginContainer = connect(
   (state: IStoreState) => {
     const props = {
       loginStatus: state.loginStatus,
@@ -15,4 +15,4 @@ const loginContainer = connect(
   actionCreators,
 )(Login);
 
-export { loginContainer as LoginContainer };
+export default LoginContainer;

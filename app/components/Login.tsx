@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IUser } from '../models';
-import { Alert } from './Alert';
+import Alert from './Alert';
 
 interface ILoginProps {
   onLogin: (user: IUser) => void;

@@ -6,7 +6,7 @@ import SubDivisionsList from '../components/SubDivisionsList';
 
 import { IStoreState } from '../models';
 
-const subDivisionsListContainer = connect(
+const SubDivisionsListContainer = connect(
   (state: IStoreState) => {
     const props = {
       subDivisions: state.subDivisions,
@@ -19,4 +19,4 @@ const subDivisionsListContainer = connect(
   { ...subDivisionssActionCreators, ...ModalActionCreators, ...DialogConfirmDeleteActionCreators },
 )(SubDivisionsList);
 
-export { subDivisionsListContainer as SubDivisionsListContainer };
+export default SubDivisionsListContainer;

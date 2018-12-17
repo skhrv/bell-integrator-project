@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { PrivateRoute } from '../components/PrivateRoute';
+import PrivateRoute from '../components/PrivateRoute';
 import { IStoreState } from '../models';
 
-const privateRouteContainer = connect(
+const PrivateRouteContainer = connect(
   (state: IStoreState) => {
     const props = {
       loginStatus: state.loginStatus,
@@ -11,4 +11,4 @@ const privateRouteContainer = connect(
   },
 )(PrivateRoute);
 
-export { privateRouteContainer as PrivateRouteContainer };
+export default PrivateRouteContainer;

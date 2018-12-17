@@ -5,8 +5,7 @@ interface ICustomProps extends RouteProps {
   loginStatus: boolean;
   component?: React.SFC<any> | React.ComponentClass<any>;
 }
-const privateRoute = (props: ICustomProps) => {
-  // tslint:disable-next-line:variable-name
+const PrivateRoute = (props: ICustomProps) => {
   const { component: Component, loginStatus, ...rest } = props;
   const render = (rProps: RouteProps) => {
     const loginPage = {
@@ -25,4 +24,4 @@ const privateRoute = (props: ICustomProps) => {
   );
 };
 
-export { privateRoute as PrivateRoute };
+export default PrivateRoute;

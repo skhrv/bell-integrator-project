@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import HandleItemForm from '../components/HandleItemForm';
 import { IStoreState } from '../models';
 
-const handleItemFormContainer = connect(
+const HandleItemFormContainer = connect(
   (state: IStoreState) => {
     const props = {
       networkError: state.error,
@@ -12,4 +12,4 @@ const handleItemFormContainer = connect(
   },
 )(HandleItemForm);
 
-export { handleItemFormContainer as HandleItemFormContainer };
+export default HandleItemFormContainer;
