@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/dialogConfirmDelete';
-import { DialogConfirmDelete } from '../components/DialogConfirmDelete';
+import DialogConfirmDelete from '../components/DialogConfirmDelete';
 import { IStoreState } from '../models';
 
 const DialogConfirmDeleteContainer = connect(
