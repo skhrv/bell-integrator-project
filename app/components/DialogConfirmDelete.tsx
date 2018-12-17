@@ -10,7 +10,7 @@ interface ICustomProps extends IDialogConfirmDelete {
 
 Modal.setAppElement('#app');
 
-const dialogConfirmDelete = (props: ICustomProps) => {
+const DialogConfirmDelete = (props: ICustomProps) => {
   const { open, deleteId, closeDialogConfirmDelete, onConfirm } = props;
   const confirmHandle = () => {
     onConfirm(deleteId);
@@ -19,7 +19,7 @@ const dialogConfirmDelete = (props: ICustomProps) => {
   return (
     <Modal
       isOpen={open}
-      onRequestClose={this.closeModal}
+      onRequestClose={closeDialogConfirmDelete}
       style={modalStyles}
     >
       <h5 className="modal-title">Вы уверены?</h5>
@@ -42,4 +42,4 @@ const dialogConfirmDelete = (props: ICustomProps) => {
       </div>
     </Modal >);
 };
-export { dialogConfirmDelete as DialogConfirmDelete };
+export default DialogConfirmDelete;
