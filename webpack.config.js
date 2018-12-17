@@ -10,6 +10,12 @@ module.exports = {
     app: './index.tsx',
     css: './app.css.ts',
   },
+  output: {
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+  },
   mode: process.env.NODE_ENV || 'development',
   module: {
     rules: [{
@@ -48,6 +54,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: __dirname + '/app/index.html',
+      chunksSortMode: 'none',
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
