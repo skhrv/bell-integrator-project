@@ -3,8 +3,8 @@ import { Redirect, Route, RouteProps } from 'react-router-dom';
 
 interface ICustomProps extends RouteProps {
   loginStatus: boolean;
+  component?: React.SFC<any> | React.ComponentClass<any>;
 }
-
 const privateRoute = (props: ICustomProps) => {
   // tslint:disable-next-line:variable-name
   const { component: Component, loginStatus, ...rest } = props;
